@@ -5,8 +5,8 @@ const { spawn, spawnSync } = require('child_process')
 const { createReadStream, createWriteStream } = require('fs')
 
 const s3 = new AWS.S3()
-const ffprobePath = '/opt/nodejs/ffprobe'
-const ffmpegPath = '/opt/nodejs/ffmpeg'
+// const ffprobePath = '/opt/bin/ffprobe'
+const ffmpegPath = '/opt/bin/ffmpeg'
 const allowedTypes = ['mov', 'mpg', 'mpeg', 'mp4', 'wmv', 'avi', 'webm']
 const width = process.env.WIDTH
 const height = process.env.HEIGHT
@@ -85,19 +85,19 @@ module.exports.handler = async (event, context) => {
     })
   }
 
-  const ffprobe = spawnSync(ffprobePath, [
-    '-v',
-    'error',
-    '-show_entries',
-    'format=duration',
-    '-of',
-    'default=nw=1:nk=1',
-    target
-  ])
+  // const ffprobe = spawnSync(ffprobePath, [
+  //   '-v',
+  //   'error',
+  //   '-show_entries',
+  //   'format=duration',
+  //   '-of',
+  //   'default=nw=1:nk=1',
+  //   target
+  // ])
 
-  const duration = Math.ceil(ffprobe.stdout.toString())
+  // const duration = Math.ceil(ffprobe.stdout.toString())
 
-  await createImage(duration * 0.25)
+  await createImage("00:00:05")
   await uploadToS3()
 
   return console.log(`processed ${bucket}/${srcKey} successfully`)
