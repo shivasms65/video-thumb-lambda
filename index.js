@@ -6,7 +6,8 @@ const { createReadStream, createWriteStream } = require('fs')
 
 const s3 = new AWS.S3()
 // const ffprobePath = '/opt/bin/ffprobe'
-const ffmpegPath = '/opt/bin/ffmpeg'
+// const ffmpegPath = '/opt/bin/ffmpeg'
+const ffmpegPath = './bin/ffmpeg'
 const allowedTypes = ['mov', 'mpg', 'mpeg', 'mp4', 'wmv', 'avi', 'webm']
 const width = process.env.WIDTH
 const height = process.env.HEIGHT
